@@ -1,11 +1,18 @@
 <template>
   <div>
-    <div><img src="" alt="" /></div>
     <div>
-      <div><h5>name</h5></div>
+      <img
+        :src="`https://image.tmdb.org/t/p/w500${data.backdrop_path}`"
+        :alt="data.title"
+      />
+    </div>
+    <div>
+      <div>
+        <h5>{{ data.title }}</h5>
+      </div>
       <div>
         <div>icon</div>
-        <div>date</div>
+        <div>{{ data.release_date }}</div>
       </div>
       <div>genre</div>
     </div>
@@ -16,7 +23,7 @@
 export default {
   props: {
     data: {
-      default: {},
+      default: null,
     },
   },
 };
