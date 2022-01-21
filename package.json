@@ -14,7 +14,11 @@
     "vue": "^2.6.11",
     "vue-axios": "^3.2.2",
     "vue-meta": "^2.4.0",
-    "vue-router": "^3.5.3"
+    "bootstrap-vue": "^2.21.2",
+    "vue-router": "^3.5.3",
+    "node-sass": "^6.0.1",
+    "sass": "^1.43.4",
+    "sass-loader": "^10.1.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
