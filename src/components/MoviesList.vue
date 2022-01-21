@@ -3,7 +3,7 @@
     <SearchBar />
     <div class="main-movie row" v-if="movieData.length > 0">
       <div class="movies col-12 col-md-4 col-sm-4 col-lg-4 col-xl-4" v-for="movie in movieData" :key="movie.id">
-        <MovieCard :data="movie" />
+        <MovieCard :data="movie" @click.native="goToDetail(movie.id)" />
       </div>
     </div>
   </div>
@@ -25,7 +25,11 @@ export default {
     };
   },
   computed: {},
-  methods: {},
+  methods: {
+    goToDetail(payload){
+      this.$router.push({path:`/detail/${payload}`})
+    }
+  },
   created() {
     moviesDataProvider.getAllMovies().then((res) => {
       this.movieData = res.data.results;
