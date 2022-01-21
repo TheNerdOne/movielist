@@ -1,8 +1,8 @@
 <template>
-  <div class="main">
+  <div class="main container">
     <SearchBar />
-    <div class="main-movie" v-if="movieData.length > 0">
-      <div class="movies" v-for="movie in movieData" :key="movie.id">
+    <div class="main-movie row" v-if="movieData.length > 0">
+      <div class="movies col-12 col-md-4 col-sm-4 col-lg-4 col-xl-4" v-for="movie in movieData" :key="movie.id">
         <MovieCard :data="movie" />
       </div>
     </div>
