@@ -89,12 +89,19 @@
         </div>
         <h5>Credits:</h5>
         <div class="credits">
-          <span v-for="(item, idx) in 10" :key="idx" style="white-space:nowrap">
+          <span
+            v-for="(item, idx) in 10"
+            :key="idx"
+            style="white-space: nowrap"
+          >
             <template v-if="idx < 10"
               >{{ credits.cast[idx].name }}{{ " " }}{{ idx != 9 ? ", " : "" }}
             </template>
           </span>
-          <span>and {{ (credits.cast.length - 10) + credits.crew.length }} more.</span>
+          <span
+            >and
+            {{ credits.cast.length - 10 + credits.crew.length }} more.</span
+          >
         </div>
       </div>
     </div>
@@ -102,35 +109,12 @@
 </template>
 
 <script>
-import { moviesDataProvider } from "../services/movies";
+import {movieDetail} from '../mixin/movieDetail';
+
 
 export default {
   name: "movie",
-  data() {
-    return { movieData: null, credits: null };
-  },
-  computed: {
-    movieID() {
-      return this.$route.params.slug;
-    },
-  },
-  methods: {
-    getDetail(payload) {
-      moviesDataProvider.getMovieDetail(payload).then((res) => {
-        this.movieData = res.data;
-      });
-    },
-    getCredits(payload) {
-      moviesDataProvider.getMovieCredits(payload).then((res) => {
-        this.credits = res.data;
-      });
-    },
-  },
-
-  mounted() {
-    this.getDetail(this.movieID);
-    this.getCredits(this.movieID);
-  },
+  mixins:[movieDetail]
 };
 </script>
 
