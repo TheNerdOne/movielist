@@ -1,6 +1,9 @@
 <template>
   <div class="main container my-4">
-    <SearchBar @DateFilter="DateFilter($event)" />
+    <SearchBar
+      @DateFilter="DateFilter($event)"
+      @change="clearDatePicker($event)"
+    />
     <div class="main-movie row" v-if="movieData.length > 0" :key="movieListKey">
       <div
         class="movies col-12 col-md-4 col-sm-4 col-lg-4 col-xl-4"
@@ -10,53 +13,41 @@
         <MovieCard :data="movie" @click.native="goToDetail(movie.id)" />
       </div>
     </div>
+    <div class="d-flex justify-content-center align-items-center my-4">
+      <div
+        :class="`prev bold mr-3 ${currentPage == 1 && 'disableBtn'}`"
+        @click="prevPage"
+      >
+        Previous Page
+      </div>
+      <div class="divider"></div>
+      <div class="next bold ml-3" @click="nextPage">Next Page</div>
+    </div>
   </div>
 </template>
 
 <script>
-import { moviesDataProvider } from "../services/movies";
 import MovieCard from "./MovieCard.vue";
 import SearchBar from "./SearchBar.vue";
+import { movieListMixin } from "../mixin/movieListMixin";
 
 export default {
   name: "list",
   components: { MovieCard, SearchBar },
-  data() {
-    return {
-      movieData: {},
-      pagesData: {},
-      currentPage: 1,
-      movieListKey:0
-    };
-  },
-  computed: {},
-  methods: {
-    goToDetail(payload) {
-      this.$router.push({ path: `/detail/${payload}` });
-    },
-    DateFilter(payload) {
-      this.getData({
-        "release_date.gte": payload[0],
-        "release_date.lte": payload[1],
-      });
-      this.movieListKey +=1
-    },
-    getData(payload) {
-      moviesDataProvider.getAllMovies(payload && payload).then((res) => {
-        this.movieData = res.data.results;
-        this.pagesData.totalPages = res.data.total_pages;
-        this.pagesData.totalCount = res.data.total_results;
-      });
-    },
-  },
-  created() {
-    moviesDataProvider.getAllMovies().then((res) => {
-      this.movieData = res.data.results;
-      this.pagesData.totalPages = res.data.total_pages;
-      this.pagesData.totalCount = res.data.total_results;
-    });
-  },
+  mixins: [movieListMixin],
 };
 </script>
 
-<style></style>
+<style scoped>
+.divider {
+  height: 24px;
+  background-color: #000;
+  width: 1px;
+}
+.next,
+.prev {
+  font-weight: 700;
+  cursor: pointer;
+  color: #318fe7;
+}
+</style>
