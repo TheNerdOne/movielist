@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { API_URL } from '../config/HTTP'
-const key = 'api_key=f62f750b70a8ef11dad44670cfb6aa57'
+export const key = 'api_key=f62f750b70a8ef11dad44670cfb6aa57'
 const Api = {
 
     init() {

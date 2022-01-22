@@ -1,7 +1,12 @@
+import axios from 'axios';
 import api from './api';
+import {key} from './api';
 
 export const moviesDataProvider = {
-    getAllMovies(){
-        return api.get('/discover/movie')
+    getAllMovies(params = {}) {
+        return api.query('/discover/movie', { params })
+    },
+    getMovieDetail(params = {}) {
+        return axios.get(`/movie/${params}?${key}`)
     }
 } 
