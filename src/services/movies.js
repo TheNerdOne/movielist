@@ -8,5 +8,8 @@ export const moviesDataProvider = {
     },
     getMovieDetail(params = {}) {
         return axios.get(`/movie/${params}?${key}`)
+    },
+    getMovieCredits(params = {}) {
+        return axios.get(`/movie/${params}/credits?${key}`)
     }
 } 
