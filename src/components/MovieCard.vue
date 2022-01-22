@@ -19,7 +19,11 @@
           />
           <div>{{ data.release_date }}</div>
         </div>
-        <div>genre</div>
+        <div class="genreDiv">
+          <p class="m-0" v-for="genre in data.genres" :key="genre.id">
+            {{ genre.name }}&nbsp;●
+          </p>
+        </div>
       </div>
     </div>
   </div>
