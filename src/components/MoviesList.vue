@@ -23,6 +23,10 @@
       <div class="divider"></div>
       <div class="next bold ml-3" @click="nextPage">Next Page</div>
     </div>
+    <div class="d-flex justify-content-center align-items-center resultDiv">
+      Showing results:
+      {{ `${this.currentPage * 20 - 19}-${this.currentPage * 20}` }}
+    </div>
   </div>
 </template>
 
@@ -49,5 +53,9 @@ export default {
   font-weight: 700;
   cursor: pointer;
   color: #318fe7;
+}
+.resultDiv {
+  font-size: 16px;
+  color: #989898;
 }
 </style>

@@ -59,7 +59,7 @@ export const movieListMixin = {
                 path: `/?${this.$route.query.gte
                     ? `gte=${this.$route.query.gte}&lte=${this.$route.query.lte}&`
                     : ""
-                    }${movieListMixin.data.currentPage == newPage ? '' : `page=${movieListMixin.data.currentPage}`}`,
+                    }page=${movieListMixin.data.currentPage}`,
             });
             this.getData({
                 "release_date.gte": this.$route.query.gte,
