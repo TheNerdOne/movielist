@@ -20,5 +20,6 @@ yarn build
 yarn lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### deployed on netlify
+https://pedantic-joliot-e48fb0.netlify.app/
+```
