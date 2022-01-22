@@ -10,10 +10,15 @@
   },
   "dependencies": {
     "axios": "^0.21.1",
+    "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
+    "node-sass": "^6.0.1",
+    "sass": "^1.43.4",
+    "sass-loader": "^10.1.1",
     "vue": "^2.6.11",
     "vue-axios": "^3.2.2",
     "vue-meta": "^2.4.0",
+    "vue-persian-datetime-picker": "^2.10.3",
     "vue-router": "^3.5.3"
   },
   "devDependencies": {
