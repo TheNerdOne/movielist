@@ -11,6 +11,7 @@
         locale="en"
         range
         auto-submit
+        @change="change"
       ></DatePicker>
     </div>
     <div class="searchBtn text-white btn badge-pill px-4" @click="log">
@@ -34,6 +35,9 @@ export default {
     log() {
       this.$emit("DateFilter", this.inputVal);
     },
+    change() {
+      this.$emit('change',this.inputVal)
+    }
   },
 };
 </script>

@@ -88,20 +88,13 @@
           {{ movieData.overview }}
         </div>
         <h5>Credits:</h5>
-        <div class="credits d-flex">
-          <div
-            v-for="(credit, idx) in movieData.production_companies.map(
-              (item) => item.name
-            )"
-            :key="idx"
-          >
-            {{ credit
-            }}{{
-              idx !=
-                movieData.production_companies.map((item) => item.name).length -
-                  1 && " , "
-            }}
-          </div>
+        <div class="credits">
+          <span v-for="(item, idx) in 10" :key="idx" style="white-space:nowrap">
+            <template v-if="idx < 10"
+              >{{ credits.cast[idx].name }}{{ " " }}{{ idx != 9 ? ", " : "" }}
+            </template>
+          </span>
+          <span>and {{ (credits.cast.length - 10) + credits.crew.length }} more.</span>
         </div>
       </div>
     </div>
@@ -114,17 +107,29 @@ import { moviesDataProvider } from "../services/movies";
 export default {
   name: "movie",
   data() {
-    return { movieData: null };
+    return { movieData: null, credits: null };
   },
   computed: {
     movieID() {
       return this.$route.params.slug;
     },
   },
+  methods: {
+    getDetail(payload) {
+      moviesDataProvider.getMovieDetail(payload).then((res) => {
+        this.movieData = res.data;
+      });
+    },
+    getCredits(payload) {
+      moviesDataProvider.getMovieCredits(payload).then((res) => {
+        this.credits = res.data;
+      });
+    },
+  },
+
   mounted() {
-    moviesDataProvider.getMovieDetail(this.movieID).then((res) => {
-      this.movieData = res.data;
-    });
+    this.getDetail(this.movieID);
+    this.getCredits(this.movieID);
   },
 };
 </script>
