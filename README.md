@@ -21,5 +21,6 @@ yarn lint
 ```
 
 ### deployed on netlify
+```
 https://pedantic-joliot-e48fb0.netlify.app/
 ```
