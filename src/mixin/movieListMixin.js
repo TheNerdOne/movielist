@@ -7,9 +7,16 @@ export const movieListMixin = {
             pagesData: {},
             currentPage: 1,
             movieListKey: 0,
+            genres: null,
+            show:false
         };
     },
     methods: {
+        getAllGenres() {
+            moviesDataProvider.getAllGenres().then((res) => {
+                this.genres = res.data.genres
+            })
+        },
         nextPage() {
             this.currentPage < this.pagesData.totalPages && this.currentPage++;
         },
@@ -36,6 +43,11 @@ export const movieListMixin = {
                 this.movieData = res.data.results;
                 this.pagesData.totalPages = res.data.total_pages;
                 this.pagesData.totalCount = res.data.total_results;
+            }).then(()=>{
+                setTimeout(() => {
+                    this.matchGenres()
+                    this.movieListKey += 1;
+                }, 200);
             });
         },
         clearDatePicker(payload) {
@@ -46,6 +58,15 @@ export const movieListMixin = {
                 });
             }
         },
+        matchGenres() {
+            this.movieData.map((movie, idx) => {
+                this.movieData[idx].genres = []
+                movie.genre_ids.map(genre => {
+                    this.movieData[idx].genres.push(this.genres.find(e => e.id == genre))
+                })
+            })
+            this.show = true
+        }
     },
     watch: {
         currentPage(newPage, oldPage) {
@@ -69,6 +90,7 @@ export const movieListMixin = {
         },
     },
     mounted() {
+        this.getAllGenres()
         if (Object.keys(this.$route.query).length == 0) {
             this.getData();
         } else {
