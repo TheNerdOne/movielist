@@ -1,5 +1,5 @@
 <template>
-  <div class="main container my-4" v-if="movieData !== null">
+  <div class="main container my-4" v-if="movieData !== null && credits">
     <div class="top-section py-4 d-flex align-items-center rounded">
       <div
         class="searchBtn text-white btn badge-pill px-3 d-flex align-items-center ml-4 justify-content-around"
@@ -90,7 +90,7 @@
         <h5>Credits:</h5>
         <div class="credits">
           <span
-            v-for="(item, idx) in 10"
+            v-for="(item, idx) in credits.cast.length"
             :key="idx"
             style="white-space: nowrap"
           >
