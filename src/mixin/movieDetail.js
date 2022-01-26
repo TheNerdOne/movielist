@@ -26,6 +26,7 @@ export const movieDetail = {
         getCredits(payload) {
             moviesDataProvider.getMovieCredits(payload).then((res) => {
                 this.credits = res.data
+            }).then(()=>{
                 this.credits.cast = this.credits.cast.sort(this.compare)
             });
         },
