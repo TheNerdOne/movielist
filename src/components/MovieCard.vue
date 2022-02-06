@@ -1,11 +1,9 @@
 <template>
   <div class="d-flex col-12 my-2 card-bg p-2 border rounded pointer">
-    <div class="img-div col-6 p-0">
-      <img
-        :src="`https://image.tmdb.org/t/p/w500${data.backdrop_path}`"
-        :alt="data.title"
-      />
-    </div>
+    <div
+      class="img-div col-6 p-0"
+      :style="` background-image: url(https://image.tmdb.org/t/p/w500${data.backdrop_path});`"
+    ></div>
     <div class="col-6 d-flex flex-column justify-content-between">
       <div>
         <h5>{{ data.title }}</h5>
@@ -41,8 +39,9 @@ export default {
 
 <style scoped>
 .img-div {
-  width: 128px;
-  overflow: hidden;
+  background-position: center;
+  background-attachment: inherit;
+  background-size: cover;
 }
 .pointer {
   cursor: pointer !important;
