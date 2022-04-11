@@ -89,11 +89,7 @@
         </div>
         <h5>Credits:</h5>
         <div class="credits">
-          <span
-            v-for="(item, idx) in credits.cast.length"
-            :key="idx"
-            style="white-space: nowrap"
-          >
+          <span v-for="(item, idx) in credits.cast.length" :key="idx">
             <template v-if="idx < 10"
               >{{ credits.cast[idx].name }}{{ " " }}{{ idx != 9 ? ", " : "" }}
             </template>
@@ -109,12 +105,11 @@
 </template>
 
 <script>
-import {movieDetail} from '../mixin/movieDetail';
-
+import { movieDetail } from "../mixin/movieDetail";
 
 export default {
   name: "movie",
-  mixins:[movieDetail]
+  mixins: [movieDetail],
 };
 </script>
 
